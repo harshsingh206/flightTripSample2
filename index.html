@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    .btnSubmit {
+        width: 300px;
+    }
+    
+    .mainBackgorund {
+        background: linear-gradient(to bottom, #ffffff 0%, #006666 100%);
+        max-height: 99999999px;
+        min-height: 1000px;
+    }
+    
+    .fromBackground {
+        background: white;
+        max-height: 999999px;
+    }
+</style>
+
+<body>
+    <div class="mainBackgorund" ng-app="myApp" ng-controller="myCtrl">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-ls-12 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-ls-3 col-xs-3">
+                </div>
+                <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6 fromBackground">
+                    <form>
+                        <div class="form-group col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                            <label for="exampleInputEmail1">Source</label>
+                            <input list="source" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Source">
+                            <datalist id="source">
+                                            <option value="DEL(NEW DELHI)">
+                                            <option value="BLR(BANGALORE)">
+                                            <option value="LKO(LUCKNOW)">
+                                            <option value="HYD(HYDERABAD)">
+                                            <option value="">
+                                    </datalist>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                            <label for="exampleInputEmail1">Destination</label>
+                            <input list="destination" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Destination">
+                            <datalist id="destination">
+                                            <option value="DEL(NEW DELHI)">
+                                            <option value="BLR(BANGALORE)">
+                                            <option value="LKO(LUCKNOW)">
+                                            <option value="HYD(HYDERABAD)">
+                                            <option value="">
+                                    </datalist>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+
+                        <div class="form-group col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                            <label for="exampleSelect1">Depart</label>
+                            <input class="form-control" type="date" id="example-date-input" required>
+                            <small id="emailHelp" class="form-text text-muted">Depart Date Is Mandatory</small>
+                        </div>
+                        <div class="form-group col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                            <label for="exampleSelect1">Return</label>
+                            <input class="form-control" type="date" id="example-date-input">
+                            <small id="emailHelp" class="form-text text-muted">Return Date Is Optional</small>
+                        </div>
+                        <div class="form-group col-lg-3 col-md-3 col-ls-3 col-xs-3">
+                            <label for="exampleSelect1">Adult</label>
+                            <select class="form-control" id="exampleSelect1">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                  <option>6</option>
+                                  <option>7</option>
+                                  <option>8</option>
+                                </select>
+                        </div>
+                        <div class="form-group col-lg-3 col-md-3 col-ls-3 col-xs-3">
+                            <label for="exampleSelect1">Children</label>
+                            <select class="form-control" id="exampleSelect1">
+                                      <option>1</option>
+                                      <option>2</option>
+                                      <option>3</option>
+                                      <option>4</option>
+                                      <option>5</option>
+                                      <option>6</option>
+                                      <option>7</option>
+                                      <option>8</option>
+                                    </select>
+                        </div>
+                        <div class="form-group col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                            <label for="exampleSelect1">Class</label>
+                            <select class="form-control" id="exampleSelect1">
+                                      <option>Economy</option>
+                                      <option>Business</option>
+                                    </select>
+                        </div>
+
+                        <br><br><br><br>
+                        <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6 btnSubmit" style="padding-top:50px; padding-bottom:50px">
+                            <button type="submit" class="btn btn-primary" style="width:110%">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="col-lg-3 col-md-3 col-ls-3 col-xs-3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module('myFlightApp', []);
+        app.controller('myHomeCtrl', function($scope, $http, $window) {
+            $scope.url =
+                $scope.Flights = {};
+            $scope.GetFlightDetails = function() {
+                $http({
+                    method: "GET",
+                    url: $scope.url
+                }).then(function mySucces(response) {
+                    $scope.Books = response.data;
+                }, function myError(response) {
+                    // $scope.myWelcome = response.statusText;        
+                });
+            }
+            $scope.GetFlightDetails();
+        });
+    </script>
+</body>
+
+</html>
