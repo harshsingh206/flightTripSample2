@@ -139,7 +139,6 @@
                 $scope.Flights = {};
 
             $scope.submitInput = function(data) {
-                console.log(data);
                 $scope.Input.app_id = "aee128ae";
                 $scope.Input.app_key = "ada425ebe022d424b312677f3a13dbaa";
                 $scope.Input.source = data.source.substr(0, 3);
@@ -152,7 +151,13 @@
                 }
                 $scope.Input.adults = data.adult;
                 $scope.Input.children = data.children;
-                $scope.Input.seatingclass = data.class;
+
+                if (data.class == "Economy") {
+                    $scope.Input.seatingclass = "E";
+                } else {
+                    $scope.Input.seatingclass = "B";
+                }
+
 
                 if ($scope.Input.dateofarrival === null) {
                     $scope.url = "http://developer.goibibo.com/api/search/?app_id=" + $scope.Input.app_id + "&app_key=" + $scope.Input.app_key + "&format=json&source=" + $scope.Input.source + "&destination=" + $scope.Input.destination + "&dateofdeparture=" + $scope.Input.dateofdeparture + "&seatingclass=" + $scope.Input.seatingclass + "&adults=" + $scope.Input.adults + "&children=" + $scope.Input.children + "&infants=0&counter=100";
