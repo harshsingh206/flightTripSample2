@@ -145,21 +145,20 @@
                 $scope.Input.source = data.source.substr(0, 3);
                 $scope.Input.destination = data.destination.substr(0, 3);
                 $scope.Input.dateofdeparture = String(data.departdate.getFullYear()) + ((data.departdate.getMonth() < 10) ? (0 + String(data.departdate.getMonth() + 1)) : (String(data.departdate.getMonth() + 1))) + ((data.departdate.getDate() < 10) ? (0 + String(data.departdate.getDate())) : (String(data.departdate.getDate())));
-                $scope.Input.dateofarrival = String(data.returndate.getFullYear()) + ((data.returndate.getMonth() < 10) ? (0 + String(data.returndate.getMonth() + 1)) : (String(data.returndate.getMonth() + 1))) + ((data.returndate.getDate() < 10) ? (0 + String(data.returndate.getDate())) : (String(data.returndate.getDate())));
+                if (data.returndate == null) {
+                    $scope.Input.dateofarrival = null;
+                } else {
+                    $scope.Input.dateofarrival = String(data.returndate.getFullYear()) + ((data.returndate.getMonth() < 10) ? (0 + String(data.returndate.getMonth() + 1)) : (String(data.returndate.getMonth() + 1))) + ((data.returndate.getDate() < 10) ? (0 + String(data.returndate.getDate())) : (String(data.returndate.getDate())));
+                }
                 $scope.Input.adults = data.adult;
                 $scope.Input.children = data.children;
                 $scope.Input.seatingclass = data.class;
-
-                console.log($scope.Input.dateofarrival);
 
                 if ($scope.Input.dateofarrival === null) {
                     $scope.url = "http://developer.goibibo.com/api/search/?app_id=" + $scope.Input.app_id + "&app_key=" + $scope.Input.app_key + "&format=json&source=" + $scope.Input.source + "&destination=" + $scope.Input.destination + "&dateofdeparture=" + $scope.Input.dateofdeparture + "&seatingclass=" + $scope.Input.seatingclass + "&adults=" + $scope.Input.adults + "&children=" + $scope.Input.children + "&infants=0&counter=100";
                 } else {
                     $scope.url = "http://developer.goibibo.com/api/search/?app_id=" + $scope.Input.app_id + "&app_key=" + $scope.Input.app_key + "&format=json&source=" + $scope.Input.source + "&destination=" + $scope.Input.destination + "&dateofdeparture=" + $scope.Input.dateofdeparture + "&dateofarrival=" + $scope.Input.dateofarrival + "&seatingclass=" + $scope.Input.seatingclass + "&adults=" + $scope.Input.adults + "&children=" + $scope.Input.children + "&infants=0&counter=100";
                 }
-                console.log($scope.url);
-
-                console.log($scope.Input);
                 $scope.GetFlightDetails();
             }
 
