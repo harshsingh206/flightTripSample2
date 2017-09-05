@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    .btnSubmit {
+        width: 300px;
+    }
+    
+    .mainBackgorund {
+        background: linear-gradient(to bottom, #ffffff 0%, #006666 100%);
+        max-height: 99999999px;
+        min-height: 800px;
+    }
+    
+    .fromBackground {
+        background: white;
+        max-height: 999999px;
+    }
+    
+    .formBorder {
+        border-width: 5px;
+        border-style: inset;
+    }
+</style>
+
+<body>
+    <header style="text-align:center">
+        <h1><b>Flight Tickets</b></h1>
+    </header>
+    <div class="mainBackgorund" ng-app="myFlightApp" ng-controller="myHomeCtrl">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-ls-12 col-xs-12"><br><br><br>
+            </div>
+            <div class="col-lg-12 col-md-12 col-ls-12 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-ls-3 col-xs-3">
+                </div>
+                <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6 fromBackground formBorder">
+                    <form>
+                        <br><br>
+                        <div class="form-group col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                            <label for="sourceInput">Source</label>
+                            <input list="source" class="form-control" id="sourceInput" ng-model="FlightsInput.source" aria-describedby="sourceHelp" placeholder="Enter Source" required>
+                            <datalist id="source">
+                                            <option value="DEL(NEW DELHI)">
+                                            <option value="BLR(BANGALORE)">
+                                            <option value="LKO(LUCKNOW)">
+                                            <option value="HYD(HYDERABAD)">
+                                            <option value="">
+                                    </datalist>
+                            <small id="sourceHelp" class="form-text text-muted">Choose your source location.</small>
+                        </div>
+                        <div class="form-group col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                            <label for="destinationInput">Destination</label>
+                            <input list="destination" class="form-control" id="destinationInput" ng-model="FlightsInput.destination" aria-describedby="destinationlHelp" placeholder="Enter Destination" required>
+                            <datalist id="destination">
+                                            <option value="DEL(NEW DELHI)">
+                                            <option value="BLR(BANGALORE)">
+                                            <option value="LKO(LUCKNOW)">
+                                            <option value="HYD(HYDERABAD)">
+                                            <option value="">
+                                    </datalist>
+                            <small id="destinationHelp" class="form-text text-muted">Choose your destination location.</small>
+                        </div>
+
+                        <div class="form-group col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                            <label for="exampleSelect1">Depart</label>
+                            <input class="form-control" type="date" ng-model="FlightsInput.departdate" id="example-date-input" required>
+                            <small id="dateHelp" class="form-text text-muted">Depart Date Is Mandatory</small>
+                        </div>
+                        <div class="form-group col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                            <label for="exampleSelect1">Return</label>
+                            <input class="form-control" type="date" ng-model="FlightsInput.returndate" id="example-date-input">
+                            <small id="emailHelp" class="form-text text-muted">Return Date Is Optional</small>
+                        </div>
+                        <div class="form-group col-lg-3 col-md-3 col-ls-3 col-xs-3">
+                            <label for="exampleSelect1">Adult</label>
+                            <select class="form-control" id="exampleSelect1" ng-model="FlightsInput.adult">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                  <option>6</option>
+                                  <option>7</option>
+                                  <option>8</option>
+                                </select>
+                        </div>
+                        <div class="form-group col-lg-3 col-md-3 col-ls-3 col-xs-3">
+                            <label for="exampleSelect1">Children</label>
+                            <select class="form-control" data-ng-model="FlightsInput.children" id="exampleSelect1">
+                                      <option>1</option>
+                                      <option>2</option>
+                                      <option>3</option>
+                                      <option>4</option>
+                                      <option>5</option>
+                                      <option>6</option>
+                                      <option>7</option>
+                                      <option>8</option>
+                                    </select>
+                        </div>
+                        <div class="form-group col-lg-6 col-md-6 col-ls-6 col-xs-6">
+                            <label for="exampleSelect1">Class</label>
+                            <select class="form-control" id="exampleSelect1" ng-model="FlightsInput.class">
+                                      <option>Economy</option>
+                                      <option>Business</option>
+                                    </select>
+                        </div>
+
+                        <br><br><br><br>
+                        <div class="col-lg-6 col-md-6 col-ls-6 col-xs-6 btnSubmit" style="padding-top:50px; padding-bottom:50px">
+                            <button type="submit" class="btn btn-primary" style="width:110%" ng-click="submitInput(FlightsInput)">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="col-lg-3 col-md-3 col-ls-3 col-xs-3">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <footer style="text-align:center">
+        &copy;2017 Harshvardhan Singh
+    </footer> -->
+    <script>
+        var app = angular.module('myFlightApp', []);
+        app.controller('myHomeCtrl', function($scope, $http, $window) {
+            $scope.FlightsInput = {};
+            $scope.Input = {};
+            $scope.url =
+                $scope.Flights = {};
+
+            $scope.submitInput = function(data) {
+                console.log(data);
+                $scope.Input.app_id = "aee128ae";
+                $scope.Input.app_key = "ada425ebe022d424b312677f3a13dbaa";
+                $scope.Input.source = data.source.substr(0, 3);
+                $scope.Input.destination = data.destination.substr(0, 3);
+                $scope.Input.dateofdeparture = String(data.departdate.getFullYear()) + ((data.departdate.getMonth() < 10) ? (0 + String(data.departdate.getMonth() + 1)) : (String(data.departdate.getMonth() + 1))) + ((data.departdate.getDate() < 10) ? (0 + String(data.departdate.getDate())) : (String(data.departdate.getDate())));
+                if (data.returndate == null) {
+                    $scope.Input.dateofarrival = null;
+                } else {
+                    $scope.Input.dateofarrival = String(data.returndate.getFullYear()) + ((data.returndate.getMonth() < 10) ? (0 + String(data.returndate.getMonth() + 1)) : (String(data.returndate.getMonth() + 1))) + ((data.returndate.getDate() < 10) ? (0 + String(data.returndate.getDate())) : (String(data.returndate.getDate())));
+                }
+                $scope.Input.adults = data.adult;
+                $scope.Input.children = data.children;
+                $scope.Input.seatingclass = data.class;
+
+                if ($scope.Input.dateofarrival === null) {
+                    $scope.url = "http://developer.goibibo.com/api/search/?app_id=" + $scope.Input.app_id + "&app_key=" + $scope.Input.app_key + "&format=json&source=" + $scope.Input.source + "&destination=" + $scope.Input.destination + "&dateofdeparture=" + $scope.Input.dateofdeparture + "&seatingclass=" + $scope.Input.seatingclass + "&adults=" + $scope.Input.adults + "&children=" + $scope.Input.children + "&infants=0&counter=100";
+                } else {
+                    $scope.url = "http://developer.goibibo.com/api/search/?app_id=" + $scope.Input.app_id + "&app_key=" + $scope.Input.app_key + "&format=json&source=" + $scope.Input.source + "&destination=" + $scope.Input.destination + "&dateofdeparture=" + $scope.Input.dateofdeparture + "&dateofarrival=" + $scope.Input.dateofarrival + "&seatingclass=" + $scope.Input.seatingclass + "&adults=" + $scope.Input.adults + "&children=" + $scope.Input.children + "&infants=0&counter=100";
+                }
+                $scope.GetFlightDetails();
+            }
+
+
+            $scope.GetFlightDetails = function() {
+                $http({
+                    method: "GET",
+                    url: $scope.url
+                }).then(function mySucces(response) {
+                    $scope.Books = response.data;
+                }, function myError(response) {
+                    // $scope.myWelcome = response.statusText;        
+                });
+            }
+
+        });
+    </script>
+</body>
+
+</html>
